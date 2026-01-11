@@ -1,0 +1,58 @@
+[System]
+Name='group'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=16
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='soc_avg'
+Range=[0 100]
+NumMFs=4
+MF1='vl':'trapmf',[0 0 10 30]
+MF2='l':'trimf',[10 30 50]
+MF3='m':'trimf',[30 50 70]
+MF4='h':'trapmf',[50 70 100 100]
+
+[Input2]
+Name='soc_diff'
+Range=[0 50]
+NumMFs=4
+MF1='l':'trimf',[0 0 7]
+MF2='m':'trimf',[3 7 13]
+MF3='h':'trimf',[7 13 17]
+MF4='vh':'trapmf',[13 17 50 50]
+
+[Output1]
+Name='dutycycle'
+Range=[0.5 0.65]
+NumMFs=5
+MF1='l':'trimf',[0.46875 0.5 0.53125]
+MF2='ml':'trimf',[0.50625 0.5375 0.56875]
+MF3='m':'trimf',[0.54375 0.575 0.60625]
+MF4='mh':'trimf',[0.58125 0.6125 0.64375]
+MF5='h':'trimf',[0.61875 0.65 0.68125]
+
+[Rules]
+1 1, 1 (1) : 1
+2 1, 2 (1) : 1
+3 1, 3 (1) : 1
+4 1, 4 (1) : 1
+1 2, 2 (1) : 1
+2 2, 3 (1) : 1
+3 2, 3 (1) : 1
+4 2, 4 (1) : 1
+1 3, 3 (1) : 1
+2 3, 4 (1) : 1
+3 3, 4 (1) : 1
+4 3, 5 (1) : 1
+1 4, 4 (1) : 1
+2 4, 5 (1) : 1
+3 4, 5 (1) : 1
+4 4, 5 (1) : 1
